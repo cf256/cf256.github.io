@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Convert any text to a CSS color">
+    <meta name="author" content="Christian Fredrik Linchausen">
+
+    <title>Text to CSS color</title>
+
+    <!-- Bootstrap core CSS -->
+      <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/cover.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+          <div class="inner cover">
+            <h1 class="cover-heading">Text to CSS color</h1>
+            <input spellcheck="false" placeholder="Text"></input>
+                <div class="output"></div>
+                <div class="output rgba"></div>
+          </div>
+          <section>
+      <h1>random string to css color</h1>
+      <p>
+        2015 by Christian Fredrik Linchausen</p>
+      <p>
+        Based on this site <a href="http://randomstringtocsscolor.com" target="_blank">randomstringtocsscolor.com</a>
+      </p>
+      <p>
+        It uses CRC-32 to convert the text into 32 bits. Using this  <a href="http://www.simplycalc.com/crc32-source.php" target="_blank">simplycalc.com</a> as the algorthm.  
+      </p>
+    </section>
+
+
+    <section>
+      <h2>How does this work?</h2>
+      <ul class="list-unstyled">
+        <li>Compute the CRC from the text</li>
+        <li>Split result into 4 numbers (1 byte each)</li>
+        <li>The first 3 bytes are used as the RGB, and the last is used as a pecentage of 255.</li>
+      </ul>  
+    </section>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="js/main.js"></script> 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
