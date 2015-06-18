@@ -25,7 +25,8 @@ input.addEventListener('keyup', function(e) {
     var crc = crc32_compute_string(reversed, value);
     var hexString = crc.toString(16);
     // Output
-    output.innerText = "#"+ hexString.substr(0,6);
+    $(".output").text('#'+ hexString.substr(0,6));
+    //output.innerText = "#"+ hexString.substr(0,6);
     // Convert to RGB
 
     var rString = hexString.slice(0, -6);
@@ -37,12 +38,13 @@ input.addEventListener('keyup', function(e) {
     b = hexStringToDecimal(bString);
     a = (hexStringToDecimal(aString) / 255).toFixed(2);
     body.setAttribute('style', 'background-color:rgba('+r+','+g+','+b+','+a);
-    output_rgba.innerText = 'rgba('+r+','+g+','+b+','+a+')';
-    
+    //output_rgba.innerText = 'rgba('+r+','+g+','+b+','+a+')';
+    $(".output_rgba").text('rgba('+r+','+g+','+b+','+a+')');
   } catch(e) {
     console.log(e);
     body.setAttribute('style', 'background-color:none');
-    output.innerText = output_rgba.innerText = "";
+    $(".output_rgba").text('rgba(51,51,51,1)');
+    $(".output").text('#333');
   }
 });
 
