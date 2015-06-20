@@ -48,22 +48,22 @@ g2 = hexStringToDecimal(gString);
 b2 = hexStringToDecimal(bString);
 a2 = (hexStringToDecimal(aString) / 255).toFixed(2);
     // Output
-    $(".well one").text('#'+ hexStringOne.substr(0,6));
-    $(".well two").text('#'+ hexStringTwo.substr(0,6));
-    $(".well three").text('rgba('+r+','+g+','+b+','+a+')');
-    $(".well four").text('rgba('+r2+','+g2+','+b2+','+a2+')');
+    $(".well.one").text('#'+ hexStringOne.substr(0,6));
+    $(".well.two").text('#'+ hexStringTwo.substr(0,6));
+    $(".well.three").text('rgba('+r+','+g+','+b+','+a+')');
+    $(".well.four").text('rgba('+r2+','+g2+','+b2+','+a2+')');
 
-    $(".well one").css({
-        'background-image': 'linear-gradient(to bottom,#e8e8e8 0,#f5f5f5 100%)'
+    $(".well.one").css({
+        'background-image': 'linear-gradient(to bottom,' + '#' + hexStringOne.substr(0,6) + ', ' + '#' + hexStringOne.substr(0,6) + ')'
     });
-    $(".well two").css({
-        'background-image': 'linear-gradient(to bottom,#e8e8e8 0,#f5f5f5 100%)'
+    $(".well.two").css({
+        'background-image': 'linear-gradient(to bottom,' + '#' + hexStringTwo.substr(0,6) + ', ' + '#' + hexStringTwo.substr(0,6) + ')'
     });
-    $(".well three").css({
-        'background-image': 'linear-gradient(to bottom,#e8e8e8 0,#f5f5f5 100%)'
+    $(".well.three").css({
+        'background-image': 'linear-gradient(to bottom,' + 'rgba('+r+','+g+','+b+','+a+')' + ', ' + 'rgba('+r+','+g+','+b+','+a+'))'
     });
-    $(".well four").css({
-        'background-image': 'linear-gradient(to bottom,#e8e8e8 0,#f5f5f5 100%)'
+    $(".well.four").css({
+        'background-image': 'linear-gradient(to bottom,' + 'rgba('+r2+','+g2+','+b2+','+a2+')' + ', ' + 'rgba('+r2+','+g2+','+b2+','+a2+'))'
     });
     $('body, html').css({
         'background-image': 'linear-gradient(45deg,' + 'rgba('+r+','+g+','+b+','+a+')' +  ',' + 'rgba('+r2+','+g2+','+b2+','+a2+')' + ')' 
@@ -73,10 +73,10 @@ a2 = (hexStringToDecimal(aString) / 255).toFixed(2);
     $('body, html').css({
         'background-image': 'linear-gradient(45deg,' + '#333333' +  ',' + '#333333)' + ')' 
     });
-    $(".well one").text('#333333');
-    $(".well two").text('#333333');
-    $(".well three").text('rgba(51,51,51,1)');
-    $(".well four").text('rgba(51,51,51,1)');
+    $(".well.one").text('#333333');
+    $(".well.two").text('#333333');
+    $(".well.three").text('rgba(51,51,51,1)');
+    $(".well.   four").text('rgba(51,51,51,1)');
 }
 });
 
