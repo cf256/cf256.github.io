@@ -5,10 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="Convert any text to a CSS color">
+  <meta name="description" content="Convert text to Gradient">
   <meta name="author" content="Christian Fredrik Linchausen">
 
-  <title>Text to CSS color</title>
+  <title>Text to Gradient</title>
 
   <!-- Bootstrap core CSS -->
   <!-- Latest compiled and minified CSS -->
@@ -27,7 +27,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="cover-heading">Text to CSS color</h1>
+          <h1 class="cover-heading">Text to Gradient</h1>
           <input spellcheck="false" placeholder="Text" type="text" class="form-control"></input>
           <div class="row">
             <div class="col-md-3">
@@ -51,10 +51,10 @@
             Christian Fredrik Linchausen
           </p>
           <p>
-            Based on this site <a href="http://randomstringtocsscolor.com" target="_blank">randomstringtocsscolor.com</a>
+            Inspired on this site <a href="http://randomstringtocsscolor.com" target="_blank">randomstringtocsscolor.com</a>
           </p>
           <p>
-            I decided to use a different way to calculate the colors. I use CRC-32 (<a href="https://en.wikipedia.org/wiki/Cyclic_redundancy_check" target="_blank">Cyclic Redundancy Check</a>) to convert the text into 32 bits. Using this  <a href="http://www.simplycalc.com/crc32-source.php" target="_blank">http://www.simplycalc.com/crc32-source.php</a> as the algorithm.  
+            I decided to use a different way to calculate the colors. I use CRC-32 (<a href="https://en.wikipedia.org/wiki/Cyclic_redundancy_check" target="_blank">Cyclic Redundancy Check</a>) to convert the text into 32 bits. Using this  <a href="http://www.simplycalc.com/crc32-source.php" target="_blank">http://www.simplycalc.com/crc32-source.php</a> as the algorithm. Two different colors are created by the text, then a linear gradient is created with those colors.  
           </p>
         </div>
       </div> 
