@@ -56,7 +56,7 @@ input.addEventListener('keyup', function(e) {
     $(".output_rgba_one").text('rgba('+r+','+g+','+b+','+a+')');
     $(".output_rgba_two").text('rgba('+r2+','+g2+','+b2+','+a2+')');
     $('body, html').css({
-        'background-image': 'linear-gradient(to right,' + 'rgba('+r+','+g+','+b+','+a+')' +  ',' + 'rgba('+r2+','+g2+','+b2+','+a2+')' + ')' 
+        'background-image': 'linear-gradient(45deg,' + 'rgba('+r+','+g+','+b+','+a+')' +  ',' + 'rgba('+r2+','+g2+','+b2+','+a2+')' + ')' 
     });
 } catch(e) {
     console.log(e);
