@@ -26,14 +26,7 @@ input {
   padding-left: 25px;
   padding-right: 25px;
 }
-object {
-  height: 84px;
-}
-.gradient {
-  background-color: red;
-  background-image:
-    linear-gradient(
-      to right, 
-      red, #f06d06
-    );
+.well {
+  color: #333333;
+  margin-top: 20px;
 }
