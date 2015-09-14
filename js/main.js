@@ -1,5 +1,5 @@
 /**
-Convert a random string to css color
+Convert a random string to 2 different colors and make gradient
 
 This implementation uses CRC to hash a string into 4 Bytes
 1 Byte per parameter in RGBA
@@ -9,85 +9,93 @@ This implementation uses CRC to hash a string into 4 Bytes
 Based on randomstringtocsscolor.com by Tim Pietrusky
 # timpietrusky.com
 **/
+/**
+    TO DO
+    Make the gradient angle of the user agent. E.g. width/height
+    Make everything in JQuery syntax
+    Uncomment Imports from HTML
+    Make choice for selecting which kind of gradient? Conic, etc
+**/
 
-var output = document.querySelector('.output'),
-output_rgba = document.querySelector('.output.rgba'),
-input = document.querySelector('input'),
-body = document.body;
+var input = document.querySelector('input');
 
 // Listen to keyup
 input.addEventListener('keyup', function(e) {
-    var value = this.value,
-    result = "",
+var value = this.value,
     polynomialColorOne = "EDB88320",
     polynomialColorTwo = "31098151";
     try {
-        var oneInt = parseInt(polynomialColorOne, 16);
-        var crcOne = crc32_compute_string(oneInt, value);
-        var hexStringOne = crcOne.toString(16);
-// New polynomial
-var twoInt = parseInt(polynomialColorTwo, 16);
-var crcTwo = crc32_compute_string(twoInt, value);
-var hexStringTwo = crcTwo.toString(16);
-// Convert to RGBA
-var rString = hexStringOne.slice(0, -6);
-var gString = hexStringOne.slice(2, -4);
-var bString = hexStringOne.slice(4, -2);
-var aString = hexStringOne.slice(-2);
-r = hexStringToDecimal(rString);
-g = hexStringToDecimal(gString);
-b = hexStringToDecimal(bString);
-a = (hexStringToDecimal(aString) / 255).toFixed(2);
+        var colorOneInt = parseInt(polynomialColorOne, 16);
+        var crcColorOne = crc32_compute_string(colorOneInt, value);
+        var colorTwoInt = parseInt(polynomialColorTwo, 16);
+        var crcColorTwo = crc32_compute_string(colorTwoInt, value);
+        var colorOne = stringToRGBA(crcColorOne.toString(16));
+        var colorTwo = stringToRGBA(crcColorTwo.toString(16));
+        console.log(colorOne);
+        console.log(colorTwo);
+        // Output
+        $(".well.one").text(rgbaToHex(colorOne));
+        $(".well.two").text(rgbaToHex(colorTwo));
 
-var rString = hexStringTwo.slice(0, -6);
-var gString = hexStringTwo.slice(2, -4);
-var bString = hexStringTwo.slice(4, -2);
-var aString = hexStringTwo.slice(-2);
-r2 = hexStringToDecimal(rString);
-g2 = hexStringToDecimal(gString);
-b2 = hexStringToDecimal(bString);
-a2 = (hexStringToDecimal(aString) / 255).toFixed(2);
-    // Output
-    $(".well.one").text('#'+ hexStringOne.substr(0,6));
-    $(".well.two").text('#'+ hexStringTwo.substr(0,6));
-    $(".well.three").text('rgba('+r+','+g+','+b+','+a+')');
-    $(".well.four").text('rgba('+r2+','+g2+','+b2+','+a2+')');
+        $(".well.three").text('rgba('+colorOne.r+','+colorOne.g+','+colorOne.b+','+colorOne.a+')');
+        $(".well.four").text('rgba('+colorTwo.r+','+colorTwo.g+','+colorTwo.b+','+colorTwo.a+')');
 
-    $(".well.one").css({
-        'background-image': 'linear-gradient(to bottom,' + '#' + hexStringOne.substr(0,6) + ', ' + '#' + hexStringOne.substr(0,6) + ')'
+        $(".well.one").css({
+            'background-image': 'linear-gradient(to bottom,' + rgbaToHex(colorOne) + ', ' + rgbaToHex(colorOne) + ')'
+        });
+        $(".well.two").css({
+            'background-image': 'linear-gradient(to bottom,' + rgbaToHex(colorTwo) + ', ' + rgbaToHex(colorTwo) + ')'
+        });
+        $(".well.three").css({
+            'background-image': 'linear-gradient(to bottom,' + 'rgba('+colorOne.r+','+colorOne.g+','+colorOne.b+','+colorOne.a+')'
+             + ', ' + 'rgba('+colorOne.r+','+colorOne.g+','+colorOne.b+','+colorOne.a+')'
+        });
+        $(".well.four").css({
+            'background-image': 'linear-gradient(to bottom,' + 'rgba('+colorTwo.r+','+colorTwo.g+','+colorTwo.b+','+colorTwo.a+')'
+             + ', ' + 'rgba('+colorTwo.r+','+colorTwo.g+','+colorTwo.b+','+colorTwo.a+')'
+        });
+        $(".md-col-12.gradient").css({
+            'background-image': 'linear-gradient(45deg,' + 'rgba('+colorOne.r+','+colorOne.g+','+colorOne.b+','+colorOne.a+')' 
+                +  ',' + 'rgba('+colorTwo.r+','+colorTwo.g+','+colorTwo.b+','+colorTwo.a+')' + ')'
+        });
+        $('body, html').css({
+            'background-image': 'linear-gradient(45deg,' + 'rgba('+colorOne.r+','+colorOne.g+','+colorOne.b+','+colorOne.a+')' 
+                +  ',' + 'rgba('+colorTwo.r+','+colorTwo.g+','+colorTwo.b+','+colorTwo.a+')' + ')'
+        });
+    } catch(e) {
+        console.log(e);
+        $('body, html').css({
+            'background-image': 'linear-gradient(45deg,' + '#333333' +  ',' + '#333333)' + ')' 
+        });
+        $(".well.one").text('#333333');
+        $(".well.two").text('#333333');
+        $(".well.three").text('rgba(51,51,51,1)');
+        $(".well.four").text('rgba(51,51,51,1)');
+        }
     });
-    $(".well.two").css({
-        'background-image': 'linear-gradient(to bottom,' + '#' + hexStringTwo.substr(0,6) + ', ' + '#' + hexStringTwo.substr(0,6) + ')'
-    });
-    $(".well.three").css({
-        'background-image': 'linear-gradient(to bottom,' + 'rgba('+r+','+g+','+b+','+a+')' + ', ' + 'rgba('+r+','+g+','+b+','+a+'))'
-    });
-    $(".well.four").css({
-        'background-image': 'linear-gradient(to bottom,' + 'rgba('+r2+','+g2+','+b2+','+a2+')' + ', ' + 'rgba('+r2+','+g2+','+b2+','+a2+'))'
-    });
-    $('body, html').css({
-        'background-image': 'linear-gradient(45deg,' + 'rgba('+r+','+g+','+b+','+a+')' +  ',' + 'rgba('+r2+','+g2+','+b2+','+a2+')' + ')' 
-    });
-} catch(e) {
-    console.log(e);
-    $('body, html').css({
-        'background-image': 'linear-gradient(45deg,' + '#333333' +  ',' + '#333333)' + ')' 
-    });
-    $(".well.one").text('#333333');
-    $(".well.two").text('#333333');
-    $(".well.three").text('rgba(51,51,51,1)');
-    $(".well.   four").text('rgba(51,51,51,1)');
-}
-});
 
 function hexStringToDecimal(hexString) {
     return parseInt(hexString, 16);
+}
+function stringToRGBA(hexString) {
+    var RGBA = {
+        'r': hexStringToDecimal(hexString.slice(0, -6)),
+        'g': hexStringToDecimal(hexString.slice(2, -4)),
+        'b': hexStringToDecimal(hexString.slice(4, -2)),
+        'a': (hexStringToDecimal(hexString.slice(-2)) / 255).toFixed(2)
+    };
+    return RGBA;
+}
+function rgbaToHex(RGBA) {
+    return ('#' + d2h(RGBA.r) + d2h(RGBA.g) + d2h(RGBA.b));
+}
+function d2h(d) { 
+    return (+d).toString(16).toUpperCase(); 
 }
 // CRC Hashing from http://www.simplycalc.com/crc32-source.php
 function crc32_generate(polynomial) {
     var table = new Array()
     var i, j, n
-
     for (i = 0; i < 256; i++) {
         n = i
         for (j = 8; j > 0; j--) {
@@ -99,7 +107,6 @@ function crc32_generate(polynomial) {
         }
         table[i] = n
     }
-
     return table
 }
 
